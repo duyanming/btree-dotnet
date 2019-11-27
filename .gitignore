@@ -4,3 +4,6 @@ _ReSharper*/
 *.suo
 *.cache
 *.user
+/.vs
+/packages
+
