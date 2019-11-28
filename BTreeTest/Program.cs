@@ -12,25 +12,32 @@ namespace BTreeTest
         static void Main(string[] args)
         {
             Console.Title = "BTreeTest";
-            BTree<string, Person> bTree = new BTree<string, Person>(3);//Btree 非线程安全
-            int[] data = new int[] { 
-            17,35,8,12,26,30,65,87,3,5,9,10,13,15,28,29,36,60,75,79,90,99
-            };
-            int len = 1000;
-            data = new int[len];
-            for (int i = 0; i < len; i++)
-            {
-                data[i] = i;
-            }
-            foreach (int i in data)
-            {
-                var person = new Person()
-                {
-                    Name = i + "Name;",
-                    Age = i
-                };
-                bTree.Insert(i.ToString(), person);
-            }
+            begin:
+            Console.WriteLine("请输入数据量：");
+            int.TryParse(Console.ReadLine(),out int n);
+            Console.WriteLine($"是否重新初始化数据（0 不初始化 1 初始化）：");
+            int.TryParse(Console.ReadLine(), out int clear);
+            PerformanceTest.Test(n, clear==1, 6);
+            goto begin;
+            //BTree<string, Person> bTree = new BTree<string, Person>(3);//Btree 非线程安全
+            //int[] data = new int[] { 
+            //17,35,8,12,26,30,65,87,3,5,9,10,13,15,28,29,36,60,75,79,90,99
+            //};
+            //int len = 1000;
+            //data = new int[len];
+            //for (int i = 0; i < len; i++)
+            //{
+            //    data[i] = i;
+            //}
+            //foreach (int i in data)
+            //{
+            //    var person = new Person()
+            //    {
+            //        Name = i + "Name;",
+            //        Age = i
+            //    };
+            //    bTree.Insert(i.ToString(), person);
+            //}
             //var person1 = new Person()
             //{
             //    Name = 1 + "Nameperson1;",
@@ -50,7 +57,7 @@ namespace BTreeTest
             //{
             //    var entity = bTree.Search(i.ToString());
             //}
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(bTree);
+            //var json = Newtonsoft.Json.JsonConvert.SerializeObject(bTree);
             Console.ReadLine();
         }
     }
